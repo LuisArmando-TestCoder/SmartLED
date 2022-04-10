@@ -19,7 +19,7 @@ draw(() => {
   setFrecuencyIndexTableSquaresColors();
 
   let flatTable = tableSquares.flat();
-  let mappedFlat = flatTable.map(({ x, y, color }) => {
+  let mappedFlat = flatTable.map(({ x, y, color, normalSize }) => {
     const newSize = c.width / c.height >= 1 ? c.height / 20 : c.width / 10;
     const newSpacing = 10;
     const getPosition = (sideSize, axisPointer) => {
@@ -33,8 +33,8 @@ draw(() => {
     return {
       x: getPosition(c.width, x),
       y: getPosition(c.height, y),
-      width: newSize,
-      height: newSize,
+      width: newSize * normalSize,
+      height: newSize * normalSize,
       color,
     };
   });
@@ -52,11 +52,13 @@ function setFrecuencyIndexTableSquaresColors() {
       const rgbaParametersAmount = 4;
       const newIndex =
         y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount;
-      square.color = getColor(
+      const [r, g, b] = [
         getColorFrecuency(frecuencies[newIndex + 0]),
         getColorFrecuency(frecuencies[newIndex + 1]),
         getColorFrecuency(frecuencies[newIndex + 2])
-      );
+      ];
+      square.color = getColor(r, g, b);
+      square.normalSize = 1 - (r + g + b) / 3 / 255;
     });
   });
 }
