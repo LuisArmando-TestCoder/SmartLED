@@ -50,16 +50,12 @@ function setFrecuencyIndexTableSquaresColors() {
   tableSquares.forEach((row, y) => {
     row.forEach((square, x) => {
       const rgbaParametersAmount = 4;
+      const newIndex =
+        y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount;
       square.color = getColor(
-        frecuencies[
-          y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount + 0
-        ],
-        frecuencies[
-          y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount + 1
-        ],
-        frecuencies[
-          y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount + 2
-        ]
+        frecuencies[newIndex + 0],
+        frecuencies[newIndex + 1],
+        frecuencies[newIndex + 2]
       );
     });
   });
