@@ -13,7 +13,7 @@ p {
     transition: .5s;
 }
 
-p:hover {
+body:hover p {
     opacity: 0;
     user-select: none;
 }
