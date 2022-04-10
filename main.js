@@ -7,7 +7,7 @@ const { size, clear, draw, c, renderGroup } = preset();
 size();
 
 const tableSquares = getTableSquares();
-const getFrecuency = (frecuency) =>
+const getColorFrecuency = (frecuency) =>
   Math.round((frecuency / maxFrecuency) * 255);
 const getColor = (r, g, b) => `rgba(${r}, ${g}, ${b}, 1)`;
 
@@ -53,9 +53,9 @@ function setFrecuencyIndexTableSquaresColors() {
       const newIndex =
         y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount;
       square.color = getColor(
-        frecuencies[newIndex + 0],
-        frecuencies[newIndex + 1],
-        frecuencies[newIndex + 2]
+        getColorFrecuency(frecuencies[newIndex + 0]),
+        getColorFrecuency(frecuencies[newIndex + 1]),
+        getColorFrecuency(frecuencies[newIndex + 2])
       );
     });
   });
