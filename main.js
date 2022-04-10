@@ -35,7 +35,7 @@ draw(() => {
       y: getPosition(c.height, y),
       width: newSize,
       height: newSize,
-      color
+      color,
     };
   });
 
@@ -49,10 +49,17 @@ draw(() => {
 function setFrecuencyIndexTableSquaresColors() {
   tableSquares.forEach((row, y) => {
     row.forEach((square, x) => {
+      const rgbaParametersAmount = 4;
       square.color = getColor(
-        frecuencies[(y * 32) + x * 4 + 0],
-        frecuencies[(y * 32) + x * 4 + 1],
-        frecuencies[(y * 32) + x * 4 + 2],
+        frecuencies[
+          y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount + 0
+        ],
+        frecuencies[
+          y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount + 1
+        ],
+        frecuencies[
+          y * Math.sqrt(frecuencies.length) + x * rgbaParametersAmount + 2
+        ]
       );
     });
   });
