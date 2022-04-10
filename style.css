@@ -1,4 +1,19 @@
 body, canvas {
-    display: block;
+    display: grid;
+    place-items: center;
     margin: 0;
+}
+
+p {
+    text-align: center;
+    color: white;
+    font: 20vw monospace;
+    position: fixed;
+    opacity: 1;
+    transition: .5s;
+}
+
+p:hover {
+    opacity: 0;
+    user-select: none;
 }
