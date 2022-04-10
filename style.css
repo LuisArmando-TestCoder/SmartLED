@@ -7,7 +7,7 @@ body, canvas {
 p {
     text-align: center;
     color: white;
-    font: 20vw monospace;
+    font: clamp(1rem, 20vw, 5rem) monospace;
     position: fixed;
     opacity: 1;
     transition: .5s;

@@ -20,7 +20,7 @@ draw(() => {
 
   let flatTable = tableSquares.flat();
   let mappedFlat = flatTable.map(({ x, y, color }) => {
-    const newSize = c.width / 10;
+    const newSize = c.width / c.height >= 1 ? c.height / 20 : c.width / 10;
     const newSpacing = 10;
     const getPosition = (sideSize, axisPointer) => {
       return (
