@@ -2,7 +2,11 @@ import preset from "https://luisarmando-testcoder.github.io/canvas-preset/index.
 
 let frecuencies;
 let maxFrecuency;
-const { size, clear, draw, c, renderGroup } = preset();
+const [xIndex, yIndex] = [
+  Math.round(Math.random() * 8),
+  Math.round(Math.random() * 8),
+];
+const { size, clear, draw } = preset();
 
 size();
 
@@ -12,38 +16,10 @@ const getColorFrecuency = (frecuency) =>
 const getColor = (r, g, b) => `rgba(${r}, ${g}, ${b}, 1)`;
 
 draw(() => {
-  clear("black");
-
   if (!frecuencies) return;
 
   setFrecuencyIndexTableSquaresColors();
-
-  let flatTable = tableSquares.flat();
-  let mappedFlat = flatTable.map(({ x, y, color, normalSize }) => {
-    const newSize = c.width / c.height >= 1 ? c.height / 20 : c.width / 10;
-    const newSpacing = 10;
-    const getPosition = (sideSize, axisPointer) => {
-      return (
-        axisPointer * (newSpacing / 2 + newSize) +
-        sideSize / 2 -
-        (tableSquares.length * (newSpacing / 2 + newSize)) / 2
-      );
-    };
-
-    return {
-      x: getPosition(c.width, x),
-      y: getPosition(c.height, y),
-      width: newSize * normalSize,
-      height: newSize * normalSize,
-      color,
-    };
-  });
-
-  flatTable = null;
-
-  renderGroup("rect", mappedFlat);
-
-  mappedFlat = null;
+  clear(tableSquares[xIndex][yIndex].color);
 }, 10);
 
 function setFrecuencyIndexTableSquaresColors() {
@@ -55,7 +31,7 @@ function setFrecuencyIndexTableSquaresColors() {
       const [r, g, b] = [
         getColorFrecuency(frecuencies[newIndex + 0]),
         getColorFrecuency(frecuencies[newIndex + 1]),
-        getColorFrecuency(frecuencies[newIndex + 2])
+        getColorFrecuency(frecuencies[newIndex + 2]),
       ];
       square.color = getColor(r, g, b);
       square.normalSize = 1 - (r + g + b) / 3 / 255;
