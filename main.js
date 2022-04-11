@@ -79,7 +79,7 @@ function getTableSquares(sideSize = 8) {
 
 function addEventListeners(eventNames, callback, target = window) {
   eventNames.forEach((eventName) => {
-    target.addEventListener("click", callback);
+    target.addEventListener(eventName, callback);
   });
 }
 
